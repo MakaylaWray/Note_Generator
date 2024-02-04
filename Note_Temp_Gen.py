@@ -165,7 +165,7 @@ class Verification(tk.Frame):
 
 
 class CollectionAllInformation(tk.Frame):
-    pass
+    print('Makayla Wray')
 
     
 
