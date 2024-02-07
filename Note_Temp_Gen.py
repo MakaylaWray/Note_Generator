@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import Scrollbar
 
 class RootWindow(tk.Tk):
-    #Creates the root window to hold all frames and widgets created
+    #Creates the root window. The base class to access all the other classes/frames
     def __init__(self):
         super().__init__()
         self.title("Note Template Generator")
@@ -57,7 +57,7 @@ class PendCode(tk.Frame):
             return self.pend_code
         
         def continue_button_clicked(self):   
-            self.gather_pend_code()    
+            self.pend_code_info = self.gather_pend_code()    
             self.destroy_verification_widgets()
             OutreachStatus(self)
 
@@ -98,7 +98,6 @@ class OutreachStatus(tk.Frame):
              for frame in self.winfo_children ():
                 frame.destroy()
 
-    
 
 class Verification(tk.Frame):
         def __init__(self, container):
@@ -154,9 +153,9 @@ class Verification(tk.Frame):
             return self.verifiedCI , self.unverifiedCI , self.verified_provider , self.unverified_provider, self.address, self.clicked_destination, self.additional_information
 
         def continue_button_clicked(self):   
-            self.gather_information()    
+            information = self.gather_information()    
             self.destroy_verification_widgets()
-            CollectionAllInformation()
+            CollectionAllInformation(information)
 
         def destroy_verification_widgets(self):
             for frame in self.winfo_children ():
@@ -164,8 +163,10 @@ class Verification(tk.Frame):
 
 
 
-class CollectionAllInformation(tk.Frame):
-    pass
+class CollectionAllInformation:
+    def __init__(self, verification_info):
+        self.verification_info = verification_info
+        print(self.verification_info)
 
     
 
